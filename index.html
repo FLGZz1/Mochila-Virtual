@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mochila Virtual - Gerenciador</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
+
+</head>
+<body>
+  <header>
+    <h1>Mochila Virtual</h1>
+  </header>
+  
+  <main>
+    <!-- 1. Gerenciamento de Matérias -->
+    <section id="subjects-management">
+      <h2>Gerencie Suas Matérias</h2>
+      <form id="add-subject-form">
+        <input type="text" id="subject-name" placeholder="Nome da Matéria" required>
+        <input type="color" id="subject-color" value="#003468">
+        <button type="submit">Adicionar Matéria</button>
+      </form>
+      <ul id="subjects-list">
+        <!-- Lista de matérias será renderizada aqui -->
+      </ul>
+    </section>
+    
+    <!-- 2. Detalhe da Matéria (lista de conteúdos) -->
+    <section id="subject-detail" class="hidden">
+      <button id="back-to-subjects">← Voltar</button>
+      <div id="subject-header">
+        <h2 id="subject-title"></h2>
+        <div class="subject-actions">
+          <button id="edit-subject">Editar Matéria</button>
+          <button id="delete-subject">Remover Matéria</button>
+        </div>
+      </div>
+      
+      <!-- Área para editar os dados da matéria -->
+      <div id="subject-edit" class="hidden">
+        <input type="text" id="edit-subject-name" placeholder="Novo nome">
+        <input type="color" id="edit-subject-color" value="#003468">
+        <button id="save-subject">Salvar</button>
+        <button id="cancel-edit">Cancelar</button>
+      </div>
+      
+      <!-- Gerenciamento dos conteúdos da matéria -->
+      <section id="contents-management">
+        <h3>Conteúdos</h3>
+        <form id="add-content-form">
+          <textarea id="content-text" placeholder="Escreva um conteúdo resumido aqui" required></textarea>
+          <button type="submit">Adicionar Conteúdo</button>
+        </form>
+        <ul id="contents-list">
+          <!-- Conteúdos serão renderizados aqui -->
+        </ul>
+      </section>
+    </section>
+    
+    <!-- 3. Detalhe do Conteúdo (Editor estilo Docs) -->
+    <section id="content-detail" class="hidden">
+      <button id="back-to-contents">← Voltar</button>
+      <h2>Conteúdo</h2>
+      
+      <!-- Modo de visualização -->
+      <div id="content-view-mode">
+        <div id="content-display"></div>
+        <button id="edit-content-btn">Editar</button>
+      </div>
+      
+      <!-- Modo de edição com toolbar completa -->
+      <div id="content-edit-mode" class="hidden">
+        <div id="editor-toolbar">
+          <button type="button" data-command="undo" title="Desfazer"><i class="fa fa-undo"></i></button>
+          <button type="button" data-command="redo" title="Refazer"><i class="fa fa-redo"></i></button>
+          <button type="button" data-command="bold" title="Negrito"><i class="fa fa-bold"></i></button>
+          <button type="button" data-command="italic" title="Itálico"><i class="fa fa-italic"></i></button>
+          <button type="button" data-command="underline" title="Sublinhado"><i class="fa fa-underline"></i></button>
+          <button type="button" data-command="strikeThrough" title="Tachado"><i class="fa fa-strikethrough"></i></button>
+          <button type="button" data-command="insertOrderedList" title="Lista Ordenada"><i class="fa fa-list-ol"></i></button>
+          <button type="button" data-command="insertUnorderedList" title="Lista Não Ordenada"><i class="fa fa-list-ul"></i></button>
+          <button type="button" data-command="justifyLeft" title="Alinhar à Esquerda"><i class="fa fa-align-left"></i></button>
+          <button type="button" data-command="justifyCenter" title="Centralizar"><i class="fa fa-align-center"></i></button>
+          <button type="button" data-command="justifyRight" title="Alinhar à Direita"><i class="fa fa-align-right"></i></button>
+          <button type="button" data-command="justifyFull" title="Justificar"><i class="fa fa-align-justify"></i></button>
+          <button type="button" data-command="createLink" title="Inserir Link"><i class="fa fa-link"></i></button>
+          <button type="button" data-command="insertImage" title="Inserir Imagem"><i class="fa fa-image"></i></button>
+          <button type="button" data-command="foreColor" title="Cor do Texto"><i class="fa fa-font"></i></button>
+          <button type="button" data-command="hiliteColor" title="Cor do Fundo"><i class="fa fa-paint-brush"></i></button>
+        </div>
+        
+        <div id="content-edit-text" contenteditable="true"></div>
+        <button id="save-content-btn">Salvar</button>
+        <button id="cancel-content-edit-btn">Cancelar</button>
+      </div>
+    </section>
+  </main>
+  
+  <script src="script.js"></script>
+</body>
+</html>

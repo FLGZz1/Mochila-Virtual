@@ -1,0 +1,173 @@
+/* Estilos Globais */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  background: #f7f7f7;
+  color: #333;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+h1 {
+  color: #003468;
+}
+
+/* Containers e Seções */
+section {
+  background: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 0 auto 20px auto;
+  max-width: 800px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* Formulários e Inputs */
+form {
+  margin-bottom: 20px;
+}
+
+input[type="text"],
+textarea {
+  width: calc(100% - 10px);
+  padding: 8px;
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+input[type="color"] {
+  padding: 2px;
+  margin-right: 10px;
+}
+
+button {
+  padding: 8px 12px;
+  font-size: 1rem;
+  margin: 5px 2px;
+  cursor: pointer;
+}
+
+/* Listas */
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  background: #eaeaea;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Exibição das Matérias */
+.subject-item {
+  display: flex;
+  align-items: center;
+}
+
+.color-swatch {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+/* Ocultar elementos */
+.hidden {
+  display: none;
+}
+
+/* Detalhe da Matéria */
+#subject-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+#subject-header h2 {
+  margin: 0;
+}
+
+.subject-actions button {
+  margin-left: 5px;
+}
+
+/* Listagem de Conteúdos */
+.content-item {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  background: #f0f0f0;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.content-text {
+  flex: 1;
+  margin-right: 10px;
+}
+
+/* Seção de Detalhe do Conteúdo (Editor) */
+#content-detail h2 {
+  margin-top: 0;
+}
+
+#content-display {
+  min-height: 150px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  background: #fff;
+  white-space: pre-wrap;
+  text-align: left;
+  margin-bottom: 10px;
+  overflow-wrap: break-word;
+  word-break: break-all;
+}
+
+/* Editor Toolbar */
+#editor-toolbar {
+  margin-bottom: 10px;
+}
+
+#editor-toolbar button {
+  background: transparent;
+  border: none;
+  padding: 6px 8px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+  border-radius: 4px;
+  color: #333;
+  font-size: 1.2rem;
+}
+
+#editor-toolbar button:hover {
+  background-color: #eee;
+  transform: scale(1.05);
+}
+
+
+/* Área de edição estilo Docs */
+#content-edit-text {
+  width: 100%;
+  min-height: 150px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background: #fff;
+  font-size: 1rem;
+  outline: none;
+  overflow-wrap: break-word;
+  word-break: break-all;
+}
