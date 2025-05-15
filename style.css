@@ -16,7 +16,7 @@ body {
   line-height: 1.6;
 }
 
-/* --- Cabeçalho da Landing e Navegação (quando aplicável) --- */
+/* --- Cabeçalho da Landing e Navegação --- */
 header {
   background-color: #003468;
   color: #ffffff;
@@ -64,7 +64,6 @@ header nav a:hover {
   left: 0;
   width: 100%;
   height: 100%;
-  /* Gradiente animado de azul e amarelo */
   background: linear-gradient(45deg, #003468, #FFCC00);
   background-size: 400% 400%;
   animation: gradientAnimation 15s ease infinite;
@@ -108,7 +107,6 @@ header nav a:hover {
   transform: scale(1.05);
 }
 
-/* Botão "Edit" escondido no canto */
 #edit-btn {
   position: fixed;
   bottom: 10px;
@@ -127,7 +125,7 @@ header nav a:hover {
   transform: scale(1.1);
 }
 
-/* --- Layout Principal para Modo Editor/Public View --- */
+/* --- Layout Principal --- */
 .dual-container {
   display: flex;
   gap: 20px;
@@ -351,6 +349,18 @@ li {
 
 #view-section header h2 {
   color: #003468;
+}
+
+/* Força ocultar elementos com a classe "hidden" */
+.hidden {
+  display: none !important;
+}
+
+/* Garante que o Editor e a Visualização fiquem sobre a Landing */
+#editor-section,
+#view-section {
+  position: relative;
+  z-index: 300;
 }
 
 /* --- Layout Responsivo --- */

@@ -54,39 +54,35 @@ document.addEventListener("DOMContentLoaded", function() {
   // Elementos do modo Público (read‑only)
   const publicContentDiv = document.getElementById("public-content");
 
-  // Função para salvar os dados no servidor (via POST /api/data)
-  async function saveData() {
-    try {
-      const response = await fetch('/api/data', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(subjects)
-      });
-      console.log("Dados salvos:", await response.json());
-    } catch (e) {
-      console.error("Erro ao salvar dados:", e);
-    }
+  // Função para salvar os dados no localStorage
+  function saveData() {
+    localStorage.setItem("mochilaData", JSON.stringify(subjects));
   }
 
-  // Função para carregar os dados do servidor (via GET /api/data)
-  async function loadData() {
-    try {
-      const response = await fetch('/api/data');
-      subjects = await response.json();
-      renderSubjects();
-    } catch (e) {
-      console.error("Erro ao carregar dados:", e);
+  // Função para carregar os dados do localStorage
+  function loadData() {
+    const data = localStorage.getItem("mochilaData");
+    if (data) {
+      try {
+        subjects = JSON.parse(data);
+      } catch (e) {
+        subjects = [];
+      }
+    } else {
+      subjects = [];
     }
+    renderSubjects();
   }
 
-  // Renderiza a lista de matérias
+  // Renderiza a lista de matérias utilizando DocumentFragment
   function renderSubjects() {
     subjectsList.innerHTML = "";
+    const frag = document.createDocumentFragment();
     subjects.forEach(subject => {
       const li = document.createElement("li");
       li.innerHTML = `
         <div class="subject-item">
-          <span class="color-swatch" style="background:${subject.color}"></span>
+          <span class="color-swatch" style="background: ${subject.color}"></span>
           <span>${subject.name}</span>
         </div>`;
       const btnContainer = document.createElement("div");
@@ -95,12 +91,14 @@ document.addEventListener("DOMContentLoaded", function() {
       openBtn.addEventListener("click", () => openSubject(subject.id));
       const removeBtn = document.createElement("button");
       removeBtn.textContent = "Remover";
-      removeBtn.addEventListener("click", () => removeSubject(subject.id));
+      removeBtn.addEventListener("click", () => {
+        removeSubject(subject.id);
+      });
       btnContainer.append(openBtn, removeBtn);
       li.appendChild(btnContainer);
-      subjectsList.appendChild(li);
+      frag.appendChild(li);
     });
-    saveData();
+    subjectsList.appendChild(frag);
   }
 
   // Remove matéria pelo id
@@ -111,6 +109,7 @@ document.addEventListener("DOMContentLoaded", function() {
       subjectDetailSection.classList.add("hidden");
     }
     renderSubjects();
+    saveData();
   }
 
   // Abre uma matéria e renderiza seus conteúdos
@@ -125,23 +124,29 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   }
 
-  // Renderiza a lista de conteúdos da matéria
+  // Renderiza a lista de conteúdos da matéria utilizando DocumentFragment
   function renderContents(subject) {
     contentsList.innerHTML = "";
-    subject.contents.forEach(content => {
-      const li = document.createElement("li");
-      li.innerHTML = `<div class="content-text">${content.text.length > 100 ? content.text.substring(0, 100) + "..." : content.text}</div>`;
-      const btnContainer = document.createElement("div");
-      const openBtn = document.createElement("button");
-      openBtn.textContent = "Abrir";
-      openBtn.addEventListener("click", () => openContentDetail(content.id));
-      const deleteBtn = document.createElement("button");
-      deleteBtn.textContent = "Remover";
-      deleteBtn.addEventListener("click", () => removeContent(subject.id, content.id));
-      btnContainer.append(openBtn, deleteBtn);
-      li.appendChild(btnContainer);
-      contentsList.appendChild(li);
-    });
+    const frag = document.createDocumentFragment();
+    if (subject.contents) {
+      subject.contents.forEach(content => {
+        const li = document.createElement("li");
+        li.innerHTML = `<div class="content-text">${
+          content.text.length > 100 ? content.text.substring(0, 100) + "..." : content.text
+        }</div>`;
+        const btnContainer = document.createElement("div");
+        const openBtn = document.createElement("button");
+        openBtn.textContent = "Abrir";
+        openBtn.addEventListener("click", () => openContentDetail(content.id));
+        const deleteBtn = document.createElement("button");
+        deleteBtn.textContent = "Remover";
+        deleteBtn.addEventListener("click", () => removeContent(subject.id, content.id));
+        btnContainer.append(openBtn, deleteBtn);
+        li.appendChild(btnContainer);
+        frag.appendChild(li);
+      });
+    }
+    contentsList.appendChild(frag);
     saveData();
   }
 
@@ -155,9 +160,10 @@ document.addEventListener("DOMContentLoaded", function() {
   // Remove conteúdo de uma matéria
   function removeContent(subjectId, contentId) {
     const subject = subjects.find(s => s.id === subjectId);
-    if (subject) {
+    if (subject && subject.contents) {
       subject.contents = subject.contents.filter(c => c.id !== contentId);
       renderContents(subject);
+      saveData();
     }
   }
 
@@ -165,7 +171,7 @@ document.addEventListener("DOMContentLoaded", function() {
   function openContentDetail(contentId) {
     currentContentId = contentId;
     const subject = subjects.find(s => s.id === currentSubjectId);
-    if (subject) {
+    if (subject && subject.contents) {
       const content = subject.contents.find(c => c.id === contentId);
       if (content) {
         contentDisplay.innerHTML = content.text;
@@ -189,6 +195,7 @@ document.addEventListener("DOMContentLoaded", function() {
       if (currentContentId === null) {
         // Cria novo conteúdo
         const newContent = { id: Date.now(), text: newText };
+        if (!subject.contents) subject.contents = [];
         subject.contents.push(newContent);
       } else {
         // Atualiza conteúdo existente
@@ -199,6 +206,7 @@ document.addEventListener("DOMContentLoaded", function() {
       }
       contentDisplay.innerHTML = newText;
       renderContents(subject);
+      saveData();
     }
     contentDisplay.classList.remove("hidden");
     contentEditText.parentElement.classList.add("hidden");
@@ -250,13 +258,13 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   });
 
-  // Controle do fundo (destacado) do texto
+  // Controle do fundo destacado do texto
   highlightColorInput.addEventListener("change", function() {
     contentEditText.focus();
     document.execCommand("hiliteColor", false, highlightColorInput.value);
   });
 
-  // Controle da cor de fundo do editor (todo o campo)
+  // Controle da cor de fundo do editor
   editorBgColorInput.addEventListener("change", function() {
     contentEditText.style.backgroundColor = editorBgColorInput.value;
   });
@@ -281,10 +289,11 @@ document.addEventListener("DOMContentLoaded", function() {
       subjectTitle.style.color = subject.color;
       renderSubjects();
       subjectEditDiv.classList.add("hidden");
+      saveData();
     }
   });
 
-  // Cancela edição da matéria
+  // Cancela a edição da matéria
   cancelEditBtn.addEventListener("click", function() {
     subjectEditDiv.classList.add("hidden");
   });
@@ -307,6 +316,7 @@ document.addEventListener("DOMContentLoaded", function() {
       subjects.push(newSubject);
       subjectNameInput.value = "";
       renderSubjects();
+      saveData();
     }
   });
 
@@ -323,14 +333,17 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
   // Landing: ao clicar em "Ver Conteúdos"
-  viewBtn.addEventListener("click", async () => {
-    try {
-      const res = await fetch('/api/data');
-      const data = await res.json();
-      renderPublicContent(data);
-    } catch (e) {
-      console.error("Erro ao carregar dados para visualização:", e);
+  viewBtn.addEventListener("click", () => {
+    // Carrega e atualiza os dados do localStorage antes de exibir
+    const data = localStorage.getItem("mochilaData");
+    if (data) {
+      try {
+        subjects = JSON.parse(data);
+      } catch(e) {
+        subjects = [];
+      }
     }
+    renderPublicContent(subjects);
     landing.classList.add("hidden");
     viewSection.classList.remove("hidden");
   });
@@ -338,7 +351,7 @@ document.addEventListener("DOMContentLoaded", function() {
   // Landing: ao clicar em "Edit" (exige senha)
   editBtn.addEventListener("click", () => {
     const pwd = prompt("Digite a senha para entrar no modo Edit:");
-    if (pwd === PASSWORD) {
+    if (pwd && pwd.trim() === PASSWORD) {
       landing.classList.add("hidden");
       editorSection.classList.remove("hidden");
       loadData();
@@ -354,16 +367,18 @@ document.addEventListener("DOMContentLoaded", function() {
       const section = document.createElement("div");
       section.className = "card";
       section.innerHTML = `<h3 style="color:${subject.color}">${subject.name}</h3>`;
-      subject.contents.forEach(content => {
-        const contentDiv = document.createElement("div");
-        contentDiv.innerHTML = `<p>${content.text}</p>`;
-        section.appendChild(contentDiv);
-      });
+      if (subject.contents) {
+        subject.contents.forEach(content => {
+          const contentDiv = document.createElement("div");
+          contentDiv.innerHTML = `<p>${content.text}</p>`;
+          section.appendChild(contentDiv);
+        });
+      }
       publicContentDiv.appendChild(section);
     });
   }
 
-  // Estado inicial: exibe a landing e oculta demais seções
+  // Estado inicial: exibe apenas a landing
   landing.classList.remove("hidden");
   editorSection.classList.add("hidden");
   viewSection.classList.add("hidden");
