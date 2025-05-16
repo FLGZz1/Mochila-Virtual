@@ -1,35 +1,65 @@
 [
   {
-    "id": 1747393513807,
-    "name": "Portugues",
-    "color": "#003468",
+    "id": 1747362538187,
+    "name": "POO-JAVA",
+    "color": "#ff8800",
     "contents": [
       {
-        "id": 1747393557359,
-        "text": "<b>dsfewfeafefEEFADFFDSRWFEWFAFAEFRAEW<u>FEWFEWFFewefEF</u></b>"
+        "id": 1747362779163,
+        "text": "<div><h1 style=\"font-family: Poppins, sans-serif; text-align: center;\"><header style=\"padding: 40px 20px; background: linear-gradient(135deg, rgb(106, 17, 203) 0%, rgb(37, 117, 252) 100%); font-size: medium; font-weight: 400;\"><b style=\"font-family: Verdana; font-size: x-large; text-align: start;\"><font color=\"#ffffff\">Experimente o meu primeiro arquivo feito em JAVA!</font></b></header></h1></div><br><div><font face=\"Verdana\">&nbsp;O intuito da aula foi criar um programa em JAVA, no meu caso o meu objetivo é criar um software para gerenciar uma biblioteca. Abaixo disponibilizo uma versão funcional do que tenho desenvolvido até agora:&nbsp;</font></div><div><a href=\"https://www.mediafire.com/file/a7x4gs2qkdc7jzh/Livraria.jar/file\"><font face=\"Verdana\">Livraria.jar</font></a></div><div><font size=\"4\" face=\"Verdana\"><b>IMPORTANTE:&nbsp;</b></font></div><div><font face=\"Verdana\">&nbsp;Esta versão <b>não</b> está completa, ou seja, não tem todos os recursos que planejo adicionar, mas pelo menos é executável. O objetivo principal era fazer o programa funcionar em outros computadores (funcionou no meu notebook antigo, então acredito que funcionará em qualquer computador que tenha java instalado).&nbsp;</font></div><div><font face=\"Verdana\"><br></font></div><div><font face=\"Verdana\">&nbsp;Antes de instalar, é preciso que tenha o java instalado em seu computador, por isso, já vou deixar aqui o link correto para instalar:&nbsp;</font></div><div><a href=\"https://www.oracle.com/java/technologies/downloads/\"><font face=\"Verdana\">Java Downloads | Oracle</font></a></div>"
       }
     ]
   },
   {
-    "id": 1747393523511,
-    "name": "Matemática",
-    "color": "#ff0000",
+    "id": 1747395597833,
+    "name": "Arquitetura e Manutenção de Computadores",
+    "color": "#0cb800",
     "contents": [
       {
-        "id": 1747393561719,
-        "text": "EWRERWEWEWRWEAREWREW"
+        "id": 1747395663378,
+        "text": "<header style=\"padding: 40px 20px; background: linear-gradient(135deg, rgb(106, 17, 203) 0%, rgb(37, 117, 252) 100%); text-align: center; font-family: Poppins, sans-serif;\"><h1 style=\"\"><font color=\"#ffffff\" size=\"6\">O que é memória RAM?</font></h1></header><main style=\"padding: 40px; display: flex; flex-direction: column; align-items: center; font-family: Poppins, sans-serif;\"><section><p>A Memória de Acesso Aleatório, ou RAM, é uma peça do computador que funciona como um armazenamento de dados temporários. Quando você abre uma foto, um programa ou mais uma aba no navegador, os dados não vão direto para o disco rígido do PC junto dos grandes arquivos. Em vez disso, ficam armazenados temporariamente na memória RAM, garantindo mais eficiência e rapidez no processamento.</p></section><section><h2>Tipos de Memória RAM</h2><ul><li><h3>DRAM (Dynamic RAM)</h3><p>Armazena dados em capacitores que precisam ser recarregados periodicamente. Exemplos incluem DDR, DDR2, DDR3, DDR4 e DDR5.</p></li><li><h3>SRAM (Static RAM)</h3><p>Não precisa ser recarregada constantemente, tornando-se mais rápida, porém mais cara. Utilizada em caches de processadores.</p></li><li><h3>SDRAM (Synchronous DRAM)</h3><p>Sincronizada com o clock do processador para otimizar a comunicação. DDR é um exemplo desse tipo de memória.</p></li><li><h3>DDR (Double Data Rate) SDRAM</h3><p>Transfere dados duas vezes por ciclo de clock. Há diversas gerações, como DDR, DDR2, DDR3, DDR4 e DDR5.</p></li><li><h3>LPDDR (Low Power DDR)</h3><p>Desenvolvida para dispositivos móveis, consumindo menos energia. Exemplos incluem LPDDR3, LPDDR4 e LPDDR5.</p></li><li><h3>GDDR (Graphics DDR)</h3><p>Otimizada para placas de vídeo, garantindo alto desempenho gráfico. Exemplos incluem GDDR5 e GDDR6.</p></li><li><h3>ECC RAM (Error-Correcting Code RAM)</h3><p>Detecta e corrige erros de memória, sendo ideal para servidores.</p></li><li><h3>3D XPoint</h3><p>Tecnologia desenvolvida pela Intel e Micron, situada entre RAM e SSDs. Um exemplo é o Intel Optane.</p></li></ul></section><section><h2>Gerações de DDR</h2><table style=\"margin-top: 20px; margin-bottom: 20px; width: 557px; border-collapse: collapse;\"><thead><tr><th style=\"padding: 10px; border: 1px solid rgb(51, 51, 51); text-align: left; background-color: rgb(106, 17, 203); color: white;\">Geração</th><th style=\"padding: 10px; border: 1px solid rgb(51, 51, 51); text-align: left; background-color: rgb(106, 17, 203); color: white;\">Velocidade</th><th style=\"padding: 10px; border: 1px solid rgb(51, 51, 51); text-align: left; background-color: rgb(106, 17, 203); color: white;\">Tensão</th><th style=\"padding: 10px; border: 1px solid rgb(51, 51, 51); text-align: left; background-color: rgb(106, 17, 203); color: white;\">Características</th></tr></thead><tbody><tr><td style=\"padding: 10px; border: 1px solid rgb(51, 51, 51);\">DDR</td><td style=\"padding: 10px; border: 1px solid rgb(51, 51, 51);\">Até 400 MT/s</td><td style=\"padding: 10px; border: 1px solid rgb(51, 51, 51);\">2,5V</td><td style=\"padding: 10px; border: 1px solid rgb(51, 51, 51);\">Primeira versão com \"double data rate\".</td></tr><tr><td style=\"padding: 10px; border: 1px solid rgb(51, 51, 51);\">DDR2</td><td style=\"padding: 10px; border: 1px solid rgb(51, 51, 51);\">400 - 1066 MT/s</td><td style=\"padding: 10px; border: 1px solid rgb(51, 51, 51);\">1,8V</td><td style=\"padding: 10px; border: 1px solid rgb(51, 51, 51);\">Maior largura de banda, menor consumo.</td></tr><tr><td style=\"padding: 10px; border: 1px solid rgb(51, 51, 51);\">DDR3</td><td style=\"padding: 10px; border: 1px solid rgb(51, 51, 51);\">800 - 2133 MT/s</td><td style=\"padding: 10px; border: 1px solid rgb(51, 51, 51);\">1,5V</td><td style=\"padding: 10px; border: 1px solid rgb(51, 51, 51);\">Melhor eficiência energética e desempenho.</td></tr><tr><td style=\"padding: 10px; border: 1px solid rgb(51, 51, 51);\">DDR4</td><td style=\"padding: 10px; border: 1px solid rgb(51, 51, 51);\">1600 - 3200 MT/s</td><td style=\"padding: 10px; border: 1px solid rgb(51, 51, 51);\">1,2V</td><td style=\"padding: 10px; border: 1px solid rgb(51, 51, 51);\">Maior densidade e largura de banda.</td></tr><tr><td style=\"padding: 10px; border: 1px solid rgb(51, 51, 51);\">DDR5</td><td style=\"padding: 10px; border: 1px solid rgb(51, 51, 51);\">4800 - 8400 MT/s</td><td style=\"padding: 10px; border: 1px solid rgb(51, 51, 51);\">1,1V</td><td style=\"padding: 10px; border: 1px solid rgb(51, 51, 51);\">Alta capacidade e maior desempenho.</td></tr></tbody></table></section><section><h2>Como identificar a geração da RAM?</h2><ol><li><strong>Nome do modelo:</strong>&nbsp;O part number geralmente indica a geração da RAM, como DDR3-1600 ou DDR5-4800.</li><li><strong>Velocidade:</strong>&nbsp;Cada geração tem uma faixa de velocidade específica.</li><li><strong>Tensão de operação:</strong>&nbsp;Cada geração opera em uma voltagem diferente.</li><li><strong>Formato físico:</strong>&nbsp;A posição dos pinos no módulo ajuda a evitar erros de instalação.</li><li><strong>Compatibilidade:</strong>&nbsp;A geração da RAM precisa ser suportada pela placa-mãe e pelo processador.</li></ol></section></main>"
       }
     ]
   },
   {
-    "id": 1747393532575,
-    "name": "Ciências",
-    "color": "#bddeff",
+    "id": 1747395719396,
+    "name": "Programação Web",
+    "color": "#000000",
+    "contents": []
+  },
+  {
+    "id": 1747395766043,
+    "name": "HTML e CSS",
+    "color": "#ff00f7",
+    "contents": []
+  },
+  {
+    "id": 1747395793549,
+    "name": "Sistemas Operacionais",
+    "color": "#75baff",
+    "contents": []
+  },
+  {
+    "id": 1747395854759,
+    "name": "Lógica de Programação",
+    "color": "#f1ff29",
+    "contents": []
+  },
+  {
+    "id": 1747395886902,
+    "name": "Noções de Robótica",
+    "color": "#005c06",
     "contents": [
       {
-        "id": 1747393568030,
-        "text": "CSLA EWFHOWUIGUQWUIGWEFYIOWE"
+        "id": 1747396194935,
+        "text": "<header style=\"padding: 40px 20px; background: linear-gradient(135deg, rgb(106, 17, 203) 0%, rgb(37, 117, 252) 100%); color: rgb(255, 255, 255); text-align: center; font-family: Poppins, sans-serif;\"><font size=\"6\">Qual é a diferença entre robótica e automação?</font></header><p style=\"font-family: Poppins, sans-serif;\"><br></p><p style=\"font-family: Poppins, sans-serif;\">De maneira geral, a automação é um conceito abrangente que engloba softwares, máquinas e ferramentas projetadas para executar tarefas que normalmente seriam realizadas por pessoas. Um exemplo disso são as plataformas de automação de processos empresariais (BPA, ou business process automation em inglês), que são sistemas criados para otimizar as operações internas das organizações. Já a automação robótica de processos (RPA, robotic process automation) refere-se a programas de software inteligentes (ou robôs de software) equipados com Inteligência Artificial e capacidade de aprendizado de máquina, que conseguem operar sistemas de computador como se fossem humanos.</p><p style=\"font-family: Poppins, sans-serif;\"><br></p><h2 style=\"font-family: Poppins, sans-serif;\">Quem utiliza a automação robótica de processos?</h2><div><br></div><p style=\"font-family: Poppins, sans-serif;\">RPA é aplicada na automação de fluxos de trabalho complexos, na infraestrutura e em processos de retaguarda, sendo ideal para grandes corporações com extensos departamentos de recursos humanos, tecnologia da informação e finanças. Automação robótica de processos é Inteligência Artificial? Embora ofereça soluções inteligentes, RPA não é sinônimo de IA. RPA consiste em softwares que replicam ações humanas, enquanto a Inteligência Artificial trata da simulação da inteligência humana por meio de softwares de computador.</p><p style=\"font-family: Poppins, sans-serif;\"><br></p><p style=\"font-family: Poppins, sans-serif;\"></p><h2 style=\"font-family: Poppins, sans-serif;\">E o que é robótica, então?</h2><div><br></div><p style=\"font-family: Poppins, sans-serif;\">A robótica, por sua vez, refere-se especificamente às máquinas capazes de enxergar, sentir, executar ações e, em diferentes níveis, tomar decisões de forma autônoma. Essa área inclui uma ampla gama de aplicações, como drones e robôs de exploração espacial. No entanto, dentro do contexto de robótica industrial e manufatura, essas máquinas geralmente são classificadas como robôs industriais. Robôs industriais são dispositivos físicos utilizados em atividades como inspeção, montagem, embalagem e paletização de produtos físicos.</p><p style=\"font-family: Poppins, sans-serif;\"><br></p><h2 style=\"font-family: Poppins, sans-serif;\">Automação e robótica: como se relacionam?</h2><div><br></div><p style=\"font-family: Poppins, sans-serif;\">A automação abrange uma variedade de tecnologias, incluindo programas de software sem componentes físicos, dispositivos PLC (controladores lógicos programáveis) e suas subdivisões, como a robótica, que pode ser considerada uma subcategoria dentro do campo da automação.</p><p style=\"font-family: Poppins, sans-serif;\"><br></p>"
       }
     ]
+  },
+  {
+    "id": 1747395921800,
+    "name": "Gestão de Tempo",
+    "color": "#00ffbf",
+    "contents": []
   }
 ]

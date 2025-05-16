@@ -1,26 +1,40 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mochila Virtual - Visualização</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <!-- Menu com gradiente animado -->
+<body class="theme-light">
+  <!-- Cabeçalho: exibe o título e um único botão de tema -->
   <header id="menu">
     <div class="menu-container">
       <h1>Mochila Virtual</h1>
-      <button id="view-contents-btn">Visualizar Conteúdos</button>
+      <div class="header-controls">
+        <!-- Botão único que alterna entre os temas;
+             ☀️ = modo claro, 🌙 = modo escuro, 🌌 = modo space -->
+        <button id="theme-toggle-btn" title="Alternar Tema">☀️</button>
+      </div>
     </div>
   </header>
 
-  <!-- Seção onde os conteúdos serão exibidos -->
-  <section id="contents-section" class="hidden">
+  <!-- Seção de conteúdos -->
+  <section id="contents-section">
     <div class="container" id="public-content">
-      <!-- Os conteúdos serão inseridos dinamicamente aqui -->
+      <!-- Os conteúdos serão inseridos via script -->
     </div>
   </section>
+
+  <!-- Rodapé -->
+  <footer id="footer">
+    <div class="footer-container">
+      <p>
+        Site feito por mim (Felipe) durante as aulas do EMTI com o auxílio do professor Cleiton.<br>
+        Aceito críticas ;)
+      </p>
+    </div>
+  </footer>
 
   <script src="script.js"></script>
 </body>
