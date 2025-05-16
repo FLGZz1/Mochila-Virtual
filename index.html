@@ -1,147 +1,24 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mochila Virtual - Gerenciador</title>
-  <link rel="stylesheet" href="style.css" />
-  <!-- Ícones Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mochila Virtual - Visualização</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Landing page com fundo animado -->
-  <div id="landing">
-    <h1>Mochila Virtual</h1>
-    <div id="landing-buttons">
-      <button id="view-btn">Ver Conteúdos</button>
+  <!-- Menu com gradiente animado -->
+  <header id="menu">
+    <div class="menu-container">
+      <h1>Mochila Virtual</h1>
+      <button id="view-contents-btn">Visualizar Conteúdos</button>
     </div>
-    <button id="edit-btn" title="Modo Editor">Edit</button>
-  </div>
+  </header>
 
-  <!-- Seção Editor (modo de edição protegido por senha) -->
-  <section id="editor-section" class="hidden">
-    <header>
-      <h2>Modo Editor</h2>
-    </header>
-    <div class="dual-container">
-      <!-- Área de Matérias (lado esquerdo) -->
-      <section id="subjects-management" class="card">
-        <h2>Gerencie Suas Matérias</h2>
-        <form id="add-subject-form">
-          <input type="text" id="subject-name" placeholder="Nome da Matéria" required />
-          <input type="color" id="subject-color" value="#003468" />
-          <button type="submit">Adicionar Matéria</button>
-        </form>
-        <ul id="subjects-list"></ul>
-      </section>
-      
-      <!-- Área de Conteúdo (lado direito) -->
-      <section class="content-area">
-        <section id="subject-detail" class="card">
-          <button id="back-to-subjects">← Voltar</button>
-          <div id="subject-header">
-            <h2 id="subject-title"></h2>
-            <div class="subject-actions">
-              <button id="edit-subject">Editar Matéria</button>
-              <button id="delete-subject">Remover Matéria</button>
-            </div>
-          </div>
-          <div id="subject-edit" class="hidden">
-            <input type="text" id="edit-subject-name" placeholder="Novo nome" />
-            <input type="color" id="edit-subject-color" value="#003468" />
-            <button id="save-subject">Salvar</button>
-            <button id="cancel-edit">Cancelar</button>
-          </div>
-          <section id="contents-management">
-            <h3>Conteúdos</h3>
-            <button id="new-content-btn">Novo Conteúdo</button>
-            <ul id="contents-list"></ul>
-          </section>
-        </section>
-        <section id="content-detail" class="card hidden">
-          <button id="back-to-contents">← Voltar</button>
-          <h2>Conteúdo</h2>
-          <!-- Modo de Visualização -->
-          <div id="content-view-mode" class="fade-in">
-            <div id="content-display"></div>
-            <button id="edit-content-btn">Editar</button>
-          </div>
-          <!-- Modo de Edição -->
-          <div id="content-edit-mode" class="hidden fade-in">
-            <div id="editor-controls">
-              <div id="editor-toolbar">
-                <button type="button" data-command="undo" title="Desfazer">
-                  <i class="fa-solid fa-rotate-left"></i>
-                </button>
-                <button type="button" data-command="redo" title="Refazer">
-                  <i class="fa-solid fa-rotate-right"></i>
-                </button>
-                <button type="button" data-command="bold" title="Negrito">
-                  <i class="fa-solid fa-bold"></i>
-                </button>
-                <button type="button" data-command="italic" title="Itálico">
-                  <i class="fa-solid fa-italic"></i>
-                </button>
-                <button type="button" data-command="underline" title="Sublinhado">
-                  <i class="fa-solid fa-underline"></i>
-                </button>
-                <button type="button" data-command="strikeThrough" title="Tachado">
-                  <i class="fa-solid fa-strikethrough"></i>
-                </button>
-                <button type="button" data-command="insertOrderedList" title="Lista Ordenada">
-                  <i class="fa-solid fa-list-ol"></i>
-                </button>
-                <button type="button" data-command="insertUnorderedList" title="Lista Não Ordenada">
-                  <i class="fa-solid fa-list-ul"></i>
-                </button>
-                <button type="button" data-command="justifyLeft" title="Alinhar à Esquerda">
-                  <i class="fa-solid fa-align-left"></i>
-                </button>
-                <button type="button" data-command="justifyCenter" title="Centralizar">
-                  <i class="fa-solid fa-align-center"></i>
-                </button>
-                <button type="button" data-command="justifyRight" title="Alinhar à Direita">
-                  <i class="fa-solid fa-align-right"></i>
-                </button>
-                <button type="button" data-command="justifyFull" title="Justificar">
-                  <i class="fa-solid fa-align-justify"></i>
-                </button>
-                <button type="button" data-command="createLink" title="Inserir Link">
-                  <i class="fa-solid fa-link"></i>
-                </button>
-                <button type="button" data-command="insertImage" title="Inserir Imagem">
-                  <i class="fa-solid fa-image"></i>
-                </button>
-              </div>
-              <div id="color-controls">
-                <label for="text-color-input">Cor do Texto:</label>
-                <input type="color" id="text-color-input" value="#000000" />
-                <label for="highlight-color-input">Fundo do Texto:</label>
-                <input type="color" id="highlight-color-input" value="#ffff00" />
-                <label for="editor-bg-color">Fundo do Editor:</label>
-                <input type="color" id="editor-bg-color" value="#ffffff" />
-              </div>
-            </div>
-            <input type="file" id="image-input" accept="image/*" style="display: none;" />
-            <div id="content-edit-text" contenteditable="true"></div>
-            <button id="save-content-btn">Salvar</button>
-            <button id="cancel-content-edit-btn">Cancelar</button>
-          </div>
-        </section>
-      </section>
-    </div>
-  </section>
-
-  <!-- Seção Pública (modo de visualização somente leitura) -->
-  <section id="view-section" class="hidden">
-    <header>
-      <h2>Conteúdos Salvos</h2>
-      <button id="back-to-landing">← Voltar</button>
-    </header>
-    <div id="public-content" class="card">
-      <!-- Conteúdos serão renderizados aqui -->
+  <!-- Seção onde os conteúdos serão exibidos -->
+  <section id="contents-section" class="hidden">
+    <div class="container" id="public-content">
+      <!-- Os conteúdos serão inseridos dinamicamente aqui -->
     </div>
   </section>
 
