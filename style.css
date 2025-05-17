@@ -253,6 +253,46 @@ footer p {
   line-height: 1.4;
 }
 
+/* Seção de Comentários */
+#comments-section {
+  padding: 20px 0;
+  background-color: #f0f0f0;
+}
+
+#comments-section .container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+#comments-section h2 {
+  text-align: center;
+  margin-bottom: 15px;
+  color: #003468;
+}
+
+#comments-section form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#comments-section input,
+#comments-section textarea {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+#comments-section button[type="submit"] {
+  padding: 10px;
+  background-color: #003468;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
 /* Responsividade */
 @media (max-width: 768px) {
   .menu-container {
