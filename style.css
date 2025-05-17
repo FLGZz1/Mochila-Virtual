@@ -25,20 +25,82 @@ body.theme-dark {
   transition: background 0.3s ease, color 0.3s ease;
 }
 
-/* Modo Space: fundo com muitas estrelas animadas */
+/* Modo Space: fundo preto com overlay animado de estrelas, planetas e estrelas cadentes */
 body.theme-space {
   font-family: 'Roboto', sans-serif;
-  background: black url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600"><rect width="100%25" height="100%25" fill="black"/><circle cx="50" cy="60" r="1" fill="white"/><circle cx="150" cy="40" r="1" fill="white"/><circle cx="250" cy="200" r="1" fill="white"/><circle cx="350" cy="80" r="1" fill="white"/><circle cx="450" cy="150" r="1" fill="white"/><circle cx="550" cy="100" r="1" fill="white"/><circle cx="650" cy="180" r="1" fill="white"/><circle cx="750" cy="60" r="1" fill="white"/><circle cx="100" cy="300" r="1" fill="white"/><circle cx="200" cy="350" r="1" fill="white"/><circle cx="300" cy="320" r="1" fill="white"/><circle cx="400" cy="400" r="1" fill="white"/><circle cx="500" cy="370" r="1" fill="white"/><circle cx="600" cy="420" r="1" fill="white"/><circle cx="700" cy="390" r="1" fill="white"/><circle cx="50" cy="500" r="1" fill="white"/><circle cx="150" cy="480" r="1" fill="white"/><circle cx="250" cy="540" r="1" fill="white"/><circle cx="350" cy="510" r="1" fill="white"/><circle cx="450" cy="550" r="1" fill="white"/></svg>') center center /cover;
+  background-color: black;
   color: #ffffff;
   line-height: 1.6;
   transition: background 0.3s ease, color 0.3s ease;
+  /* O background do body é preto. O overlay terá as estrelas e planetas */
+}
+
+/* Overlay do Modo Space */
+#space-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  /* Fundo de estrelas via SVG: muitas estrelas brancas */
+  background: black url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600"><rect width="800" height="600" fill="black"/><circle cx="50" cy="50" r="1" fill="white"/><circle cx="150" cy="80" r="1" fill="white"/><circle cx="250" cy="120" r="1" fill="white"/><circle cx="350" cy="60" r="1" fill="white"/><circle cx="450" cy="150" r="1" fill="white"/><circle cx="550" cy="90" r="1" fill="white"/><circle cx="650" cy="200" r="1" fill="white"/><circle cx="750" cy="70" r="1" fill="white"/><circle cx="100" cy="300" r="1" fill="white"/><circle cx="200" cy="350" r="1" fill="white"/><circle cx="300" cy="320" r="1" fill="white"/><circle cx="400" cy="400" r="1" fill="white"/><circle cx="500" cy="370" r="1" fill="white"/><circle cx="600" cy="420" r="1" fill="white"/><circle cx="700" cy="390" r="1" fill="white"/></svg>') center center /cover;
   animation: shootingStars 10s linear infinite;
 }
 
-/* Animação simples para simular movimento das estrelas */
+/* Faz com que o overlay seja exibido apenas no modo Space */
+body:not(.theme-space) #space-overlay {
+  display: none;
+}
+body.theme-space #space-overlay {
+  display: block;
+}
+
+/* Animação de "shooting stars" para simular movimento das estrelas no overlay */
 @keyframes shootingStars {
   from { background-position: 0 0; }
   to { background-position: -100% -100%; }
+}
+
+/* Estrelas Cadentes Individuais */
+.shooting-star {
+  position: absolute;
+  display: block;
+  width: 80px;
+  height: 2px;
+  background: white;
+  opacity: 0.8;
+  transform: rotate(45deg);
+  animation: shootingStar 2s ease-out infinite;
+}
+
+.planet {
+  position: absolute;
+  display: block;
+  width: 80px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0);
+  opacity: 0.8;
+  transform: rotate(45deg);
+  animation: shootingStar 2s ease-out infinite;
+}
+@keyframes shootingStar {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) rotate(45deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(100px, 100px) rotate(45deg);
+  }
+}
+
+/* Animação para os Planetas */
+@keyframes movePlanet {
+  0% { transform: translate(0, 0); }
+  50% { transform: translate(20px, 20px); }
+  100% { transform: translate(0, 0); }
 }
 
 /* Cabeçalho */
@@ -56,13 +118,11 @@ body.theme-dark #menu {
   border-color: #ffffff;
 }
 body.theme-space #menu {
-  /* No Space, fundo com gradiente de fundo preto e roxo */
   background: linear-gradient(45deg, black, #8A2BE2, black);
   background-size: 400% 400%;
   animation: gradientAnimation 15s ease infinite;
   border-color: #8A2BE2;
 }
-
 @keyframes gradientAnimation {
   0%   { background-position: 0% 50%; }
   50%  { background-position: 100% 50%; }
@@ -81,7 +141,7 @@ body.theme-space #menu {
   color: inherit;
 }
 
-/* Botão único de Tema */
+/* Botão Único de Tema */
 .header-controls {
   display: flex;
   align-items: center;

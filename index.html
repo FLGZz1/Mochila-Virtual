@@ -4,25 +4,24 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mochila Virtual - Visualização</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body class="theme-light">
-  <!-- Cabeçalho: exibe o título e um único botão de tema -->
+  <!-- Cabeçalho: Título e botão único para alternar o tema -->
   <header id="menu">
     <div class="menu-container">
       <h1>Mochila Virtual</h1>
       <div class="header-controls">
-        <!-- Botão único que alterna entre os temas;
-             ☀️ = modo claro, 🌙 = modo escuro, 🌌 = modo space -->
+        <!-- Botão que mostra o emoji do tema atual: ☀️ (claro), 🌙 (escuro) ou 🌌 (space) -->
         <button id="theme-toggle-btn" title="Alternar Tema">☀️</button>
       </div>
     </div>
   </header>
 
-  <!-- Seção de conteúdos -->
+  <!-- Seção de Conteúdos -->
   <section id="contents-section">
     <div class="container" id="public-content">
-      <!-- Os conteúdos serão inseridos via script -->
+      <!-- Conteúdos serão inseridos via script -->
     </div>
   </section>
 
@@ -31,10 +30,26 @@
     <div class="footer-container">
       <p>
         Site feito por mim (Felipe) durante as aulas do EMTI com o auxílio do professor Cleiton.<br>
-        Aceito críticas ;)
+        Protótipo para organizar conteúdos.
       </p>
     </div>
   </footer>
+
+  <!-- Overlay para o Modo Space: fundo estrelado junto com planetas e estrelas cadentes -->
+  <div id="space-overlay">
+    <!-- O background do overlay já exibe muitas estrelas -->
+    <!-- Estrelas cadentes -->
+    <span class="shooting-star" style="left: 20%; top: 10%; animation-duration: 2s; animation-delay: 0s;"></span>
+    <span class="shooting-star" style="left: 65%; top: 15%; animation-duration: 2.5s; animation-delay: 1s;"></span>
+    <span class="shooting-star" style="left: 80%; top: 5%; animation-duration: 3s; animation-delay: 2s;"></span>
+    <span class="shooting-star" style="left: 50%; top: 60%; animation-duration: 2.2s; animation-delay: 1.5s;"></span>
+    <span class="shooting-star" style="left: 30%; top: 80%; animation-duration: 4s; animation-delay: 0s;"></span>
+    <!-- Planetas integrados no mesmo overlay -->
+    <span class="planet" style="left: 10%; top: 20%; opacity: 0.3; font-size: 3rem; animation: movePlanet 25s linear infinite;">🛰️</span>
+    <span class="planet" style="left: 70%; top: 30%; opacity: 0.5; font-size: 4rem; animation: movePlanet 30s linear infinite;">🌍</span>
+    <span class="planet" style="left: 40%; top: 70%; opacity: 0.8; font-size: 5rem; animation: movePlanet 20s linear infinite;">🪐</span>
+    <span class="planet" style="left: 30%; top: 30%; opacity: 0.4; font-size: 2.5rem; animation: movePlanet 35s linear infinite;">🌕</span>
+  </div>
 
   <script src="script.js"></script>
 </body>
