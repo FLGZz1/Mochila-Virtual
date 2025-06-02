@@ -1,8 +1,0 @@
-comments:
-  allowedFields:
-    - name
-    - email
-    - comment
-  branch: main
-  commitMessage: "Novo comentário via Staticman [skip ci]"
-  filename: "data/comments/{options.slug}/{timestamp}-{id}.json"
