@@ -35,6 +35,39 @@ body.theme-space {
   /* O background do body é preto. O overlay terá as estrelas e planetas */
 }
 
+/* Modo Matemática */
+body.theme-math {
+  font-family: 'Roboto', sans-serif;
+  background-color: #000000;
+  color: #ffffff;
+  line-height: 1.6;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Pseudo-elemento para o overlay animado */
+body.theme-math::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;  /* Permite clicar no conteúdo sem interferência */
+  background: url('math_overlay.jpg') repeat; /* Insira uma imagem com símbolos matemáticos */
+  opacity: 0.3;  /* Ajuste a transparência conforme desejar */
+  animation: mathOverlayMove 30s linear infinite;
+  z-index: -1;
+}
+
+@keyframes mathOverlayMove {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 500px 500px; /* Ajuste conforme o efeito desejado */
+  }
+}
+
 /* Overlay do Modo Space */
 #space-overlay {
   position: fixed;
@@ -123,6 +156,12 @@ body.theme-space #menu {
   animation: gradientAnimation 15s ease infinite;
   border-color: #8A2BE2;
 }
+
+body.theme-math #menu {
+  background-color: #00000070;
+  border-color: #ffffff;
+}
+
 @keyframes gradientAnimation {
   0%   { background-position: 0% 50%; }
   50%  { background-position: 100% 50%; }
@@ -190,6 +229,12 @@ body.theme-space .card {
   box-shadow: 0 0 10px #8A2BE2;
 }
 
+body.theme-math .card {
+  background: #00000000;
+  border-color: #ffffff;
+  box-shadow: 0 0 10px #ffffff;
+}
+
 /* Itens de Conteúdo */
 .content-item {
   margin-bottom: 15px;
@@ -219,6 +264,11 @@ body.theme-space .show-full-btn {
   word-break: break-word;
 }
 
+body.theme-math .show-full-btn {
+  background: #ffffff;
+  color: #000000;
+}
+
 /* Rodapé */
 #footer {
   padding: 20px;
@@ -240,6 +290,12 @@ body.theme-space #footer {
   animation: gradientAnimation 15s ease infinite, fadeInUp 1.5s ease;
   border-color: #8A2BE2;
 }
+
+body.theme-math #footer {
+  background-color: #00000070;
+  border-color: #ffffff;
+}
+
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0); }
