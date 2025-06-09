@@ -323,3 +323,15 @@ footer p {
     margin: 10px auto;
   }
 }
+
+#public-content img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+video.responsive-video {
+ max-width: 100%;
+ height: auto;
+ display: block;
+}
