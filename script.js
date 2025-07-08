@@ -204,57 +204,69 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   }
 
-  function renderPublicContent(data) {
-    const container = document.getElementById("public-content");
-    container.innerHTML = "";
-    if (!Array.isArray(data) || data.length === 0) {
-      container.innerHTML = "<p>Nenhum conteúdo disponível.</p>";
-      return;
-    }
-    data.forEach(subject => {
-      const card = document.createElement("div");
-      card.classList.add("card");
+function renderPublicContent(subjects) {
+  const container = document.getElementById("public-content");
+  container.innerHTML = "";
 
-      const subjectTitle = document.createElement("h2");
-      subjectTitle.textContent = subject.name;
-      if (subject.color) subjectTitle.style.color = subject.color;
-      card.appendChild(subjectTitle);
-
-      if (!subject.contents || subject.contents.length === 0) {
-        const emptyMsg = document.createElement("p");
-        emptyMsg.textContent = "Nada por aqui...";
-        card.appendChild(emptyMsg);
-      } else {
-        subject.contents.forEach((content, index) => {
-          const contentItem = document.createElement("div");
-          contentItem.classList.add("content-item");
-
-          const toggleBtn = document.createElement("button");
-          toggleBtn.classList.add("show-full-btn");
-          toggleBtn.textContent = "conteúdo " + (index + 1);
-
-          const contentDiv = document.createElement("div");
-          contentDiv.classList.add("content-full");
-          contentDiv.innerHTML = content.text;
-
-          toggleBtn.addEventListener("click", function () {
-            if (contentDiv.style.display === "block") {
-              contentDiv.style.display = "none";
-              toggleBtn.textContent = "conteúdo " + (index + 1);
-            } else {
-              contentDiv.style.display = "block";
-              toggleBtn.textContent = "Ocultar conteúdo " + (index + 1);
-            }
-          });
-
-          contentItem.appendChild(toggleBtn);
-          contentItem.appendChild(contentDiv);
-          card.appendChild(contentItem);
-        });
-      }
-      container.appendChild(card);
-    });
+  if (!Array.isArray(subjects) || subjects.length === 0) {
+    container.innerHTML = "<p>Nenhum conteúdo disponível.</p>";
+    return;
   }
+
+  subjects.forEach(subject => {
+    const card = document.createElement("div");
+    card.classList.add("card");
+
+    // Título da matéria
+    const subjectTitle = document.createElement("h2");
+    subjectTitle.textContent = subject.name;
+    if (subject.color) subjectTitle.style.color = subject.color;
+    card.appendChild(subjectTitle);
+
+    // Conteúdos
+    if (!subject.contents || subject.contents.length === 0) {
+      const emptyMsg = document.createElement("p");
+      emptyMsg.textContent = "Nada por aqui...";
+      card.appendChild(emptyMsg);
+    } else {
+      subject.contents.forEach((content, index) => {
+        const contentItem = document.createElement("div");
+        contentItem.classList.add("content-item");
+
+
+
+        // 2) Botão que abre/fecha o conteúdo
+        const toggleBtn = document.createElement("button");
+        toggleBtn.classList.add("show-full-btn");
+        // usa o título ou "Conteúdo N" como fallback
+        toggleBtn.textContent = content.title
+          ? content.title
+          : `Conteúdo ${index + 1}`;
+
+        // 3) Div com o HTML do conteúdo
+        const contentDiv = document.createElement("div");
+        contentDiv.classList.add("content-full");
+        contentDiv.style.display = "none";
+        contentDiv.innerHTML = content.text;
+
+        // alterna exibição
+        toggleBtn.addEventListener("click", () => {
+          const isOpen = contentDiv.style.display === "block";
+          contentDiv.style.display = isOpen ? "none" : "block";
+          toggleBtn.textContent = isOpen
+            ? (content.title || `Conteúdo ${index + 1}`)
+            : `Ocultar: ${content.title || `Conteúdo ${index + 1}`}`;
+        });
+
+        contentItem.appendChild(toggleBtn);
+        contentItem.appendChild(contentDiv);
+        card.appendChild(contentItem);
+      });
+    }
+
+    container.appendChild(card);
+  });
+}
 
   // Carrega os conteúdos públicos
   loadPublicData();
