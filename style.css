@@ -5,8 +5,9 @@
   box-sizing: border-box;
 }
 
-/* Temas Base */
-
+/* ===========================
+   TEMAS
+   =========================== */
 /* Modo Claro (padrão) */
 body.theme-light {
   font-family: 'Roboto', sans-serif;
@@ -25,14 +26,19 @@ body.theme-dark {
   transition: background 0.3s ease, color 0.3s ease;
 }
 
-/* Modo Space: fundo preto com overlay animado de estrelas, planetas e estrelas cadentes */
+/* Modo Space */
 body.theme-space {
   font-family: 'Roboto', sans-serif;
   background-color: black;
   color: #ffffff;
   line-height: 1.6;
   transition: background 0.3s ease, color 0.3s ease;
-  /* O background do body é preto. O overlay terá as estrelas e planetas */
+}
+body.theme-space #space-overlay {
+  display: block;
+}
+body:not(.theme-space) #space-overlay {
+  display: none;
 }
 
 /* Modo Matemática */
@@ -43,100 +49,64 @@ body.theme-math {
   line-height: 1.6;
   transition: background 0.3s ease, color 0.3s ease;
 }
-
-/* Pseudo-elemento para o overlay animado */
 body.theme-math::before {
   content: "";
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;  /* Permite clicar no conteúdo sem interferência */
-  background: url('math_overlay.jpg') repeat; /* Insira uma imagem com símbolos matemáticos */
-  opacity: 0.3;  /* Ajuste a transparência conforme desejar */
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  background: url('math_overlay.jpg') repeat;
+  opacity: 0.3;
   animation: mathOverlayMove 30s linear infinite;
   z-index: -1;
 }
-
 @keyframes mathOverlayMove {
-  0% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: 500px 500px; /* Ajuste conforme o efeito desejado */
-  }
+  0%   { background-position: 0 0; }
+  100% { background-position: 500px 500px; }
 }
 
-/* Overlay do Modo Space */
+/* ===========================
+   SPACE OVERLAY
+   =========================== */
 #space-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
   pointer-events: none;
   z-index: -1;
-  /* Fundo de estrelas via SVG: muitas estrelas brancas */
-  background: black url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600"><rect width="800" height="600" fill="black"/><circle cx="50" cy="50" r="1" fill="white"/><circle cx="150" cy="80" r="1" fill="white"/><circle cx="250" cy="120" r="1" fill="white"/><circle cx="350" cy="60" r="1" fill="white"/><circle cx="450" cy="150" r="1" fill="white"/><circle cx="550" cy="90" r="1" fill="white"/><circle cx="650" cy="200" r="1" fill="white"/><circle cx="750" cy="70" r="1" fill="white"/><circle cx="100" cy="300" r="1" fill="white"/><circle cx="200" cy="350" r="1" fill="white"/><circle cx="300" cy="320" r="1" fill="white"/><circle cx="400" cy="400" r="1" fill="white"/><circle cx="500" cy="370" r="1" fill="white"/><circle cx="600" cy="420" r="1" fill="white"/><circle cx="700" cy="390" r="1" fill="white"/></svg>') center center /cover;
+  background: black url('data:image/svg+xml;utf8,<svg ...>') center/cover;
   animation: shootingStars 10s linear infinite;
 }
-
-/* Faz com que o overlay seja exibido apenas no modo Space */
-body:not(.theme-space) #space-overlay {
-  display: none;
-}
-body.theme-space #space-overlay {
-  display: block;
-}
-
-/* Animação de "shooting stars" para simular movimento das estrelas no overlay */
 @keyframes shootingStars {
   from { background-position: 0 0; }
-  to { background-position: -100% -100%; }
+  to   { background-position: -100% -100%; }
 }
-
-/* Estrelas Cadentes Individuais */
 .shooting-star {
   position: absolute;
-  display: block;
-  width: 80px;
-  height: 2px;
+  width: 80px; height: 2px;
   background: white;
   opacity: 0.8;
   transform: rotate(45deg);
   animation: shootingStar 2s ease-out infinite;
 }
-
+@keyframes shootingStar {
+  0%   { opacity: 1; transform: translate(0,0) rotate(45deg); }
+  100% { opacity: 0; transform: translate(100px,100px) rotate(45deg); }
+}
 .planet {
   position: absolute;
-  display: block;
-  width: 80px;
-  height: 2px;
-  background: rgba(255, 255, 255, 0);
-  opacity: 0.8;
-  transform: rotate(45deg);
-  animation: shootingStar 2s ease-out infinite;
+  font-size: 4rem;
+  animation: movePlanet 20s linear infinite;
 }
-@keyframes shootingStar {
-  0% {
-    opacity: 1;
-    transform: translate(0, 0) rotate(45deg);
-  }
-  100% {
-    opacity: 0;
-    transform: translate(100px, 100px) rotate(45deg);
-  }
-}
-
-/* Animação para os Planetas */
 @keyframes movePlanet {
-  0% { transform: translate(0, 0); }
-  50% { transform: translate(20px, 20px); }
+  0%   { transform: translate(0, 0); }
+  50%  { transform: translate(20px, 20px); }
   100% { transform: translate(0, 0); }
 }
 
-/* Cabeçalho */
+/* ===========================
+   CABEÇALHO
+   =========================== */
 #menu {
   padding: 20px;
   border-bottom: 2px solid;
@@ -156,18 +126,15 @@ body.theme-space #menu {
   animation: gradientAnimation 15s ease infinite;
   border-color: #8A2BE2;
 }
-
 body.theme-math #menu {
-  background-color: #00000070;
+  background-color: rgba(0,0,0,0.7);
   border-color: #ffffff;
 }
-
 @keyframes gradientAnimation {
   0%   { background-position: 0% 50%; }
   50%  { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
-
 .menu-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -178,12 +145,6 @@ body.theme-math #menu {
 #menu h1 {
   font-size: 2rem;
   color: inherit;
-}
-
-/* Botão Único de Tema */
-.header-controls {
-  display: flex;
-  align-items: center;
 }
 .header-controls button {
   background: transparent;
@@ -196,67 +157,91 @@ body.theme-math #menu {
   transform: scale(1.1);
 }
 
-/* Container de Conteúdo */
-.container {
-  max-width: 1200px;
-  margin: 20px auto;
-  padding: 10px;
+/* ===========================
+   BIMESTRE TABS
+   =========================== */
+.bimestre-tabs {
+  display: flex;
+  border-bottom: 2px solid #ddd;
+  margin: 20px 0 10px;
+  justify-content: center;
+  gap: 10px;
+}
+.bimestre-tabs .tab {
+  padding: 8px 16px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  color: #444;
+  transition: color 0.3s, border-bottom 0.3s;
+}
+.bimestre-tabs .tab.active {
+  color: #3366cc;
+  border-bottom: 3px solid #3366cc;
 }
 
-/* Cartões (Matérias) */
+/* ===========================
+   CONTAINER PRINCIPAL
+   =========================== */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 10px;
+}
+
+/* ===========================
+   CARTÕES (MATÉRIAS)
+   =========================== */
 .card {
-  position: relative;
   padding: 20px;
   margin-bottom: 20px;
   border: 1px solid;
   border-radius: 8px;
   transition: transform 0.3s;
 }
-.card:hover {
-  transform: scale(1.02);
-}
+.card:hover { transform: scale(1.02); }
 body.theme-light .card {
-  background: #ffffff;
-  border-color: #000000;
+  background: #ffffff; border-color: #000000;
 }
 body.theme-dark .card {
-  background: #000000;
-  border-color: #ffffff;
+  background: #000000; border-color: #ffffff;
 }
 body.theme-space .card {
   background: rgba(0,0,0,0.8);
   border-color: #8A2BE2;
   box-shadow: 0 0 10px #8A2BE2;
 }
-
 body.theme-math .card {
-  background: #00000000;
-  border-color: #ffffff;
+  background: transparent; border-color: #ffffff;
   box-shadow: 0 0 10px #ffffff;
 }
 
-/* Itens de Conteúdo */
+/* ===========================
+   ITENS DE CONTEÚDO
+   =========================== */
 .content-item {
   margin-bottom: 15px;
 }
 .show-full-btn {
-  padding: 5px 10px;
+  padding: 6px 12px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   font-size: 0.9rem;
+  transition: background 0.3s, color 0.3s;
 }
 body.theme-light .show-full-btn {
-  background: #000000;
-  color: #ffffff;
+  background: #000000; color: #ffffff;
 }
 body.theme-dark .show-full-btn {
-  background: #ffffff;
-  color: #000000;
+  background: #ffffff; color: #000000;
 }
 body.theme-space .show-full-btn {
-  background: #8A2BE2;
-  color: #ffffff;
+  background: #8A2BE2; color: #ffffff;
+}
+body.theme-math .show-full-btn {
+  background: #ffffff; color: #000000;
 }
 .content-full {
   display: none;
@@ -264,25 +249,20 @@ body.theme-space .show-full-btn {
   word-break: break-word;
 }
 
-body.theme-math .show-full-btn {
-  background: #ffffff;
-  color: #000000;
-}
-
-/* Rodapé */
+/* ===========================
+   RODAPÉ
+   =========================== */
 #footer {
   padding: 20px;
   border-top: 2px solid;
   text-align: center;
-  transition: background 0.3s ease, border-color 0.3s ease;
+  transition: background 0.3s, border-color 0.3s;
 }
 body.theme-light #footer {
-  background-color: #ffffff;
-  border-color: #000000;
+  background-color: #ffffff; border-color: #000000;
 }
 body.theme-dark #footer {
-  background-color: #000000;
-  border-color: #ffffff;
+  background-color: #000000; border-color: #ffffff;
 }
 body.theme-space #footer {
   background: linear-gradient(45deg, black, #8A2BE2, black);
@@ -290,15 +270,12 @@ body.theme-space #footer {
   animation: gradientAnimation 15s ease infinite, fadeInUp 1.5s ease;
   border-color: #8A2BE2;
 }
-
 body.theme-math #footer {
-  background-color: #00000070;
-  border-color: #ffffff;
+  background-color: rgba(0,0,0,0.7); border-color: #ffffff;
 }
-
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
+  0%   { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 .footer-container {
   max-width: 1200px;
@@ -309,7 +286,9 @@ footer p {
   line-height: 1.4;
 }
 
-/* Responsividade */
+/* ===========================
+   RESPONSIVIDADE
+   =========================== */
 @media (max-width: 768px) {
   .menu-container {
     flex-direction: column;
@@ -324,14 +303,50 @@ footer p {
   }
 }
 
+/* ===========================
+   IMAGENS E VÍDEOS RESPONSIVOS
+   =========================== */
 #public-content img {
   max-width: 100%;
   height: auto;
   display: block;
 }
-
 video.responsive-video {
- max-width: 100%;
- height: auto;
- display: block;
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ------------ Seletor de Bimestre (tabs) ------------ */
+.bim-selector {
+  display: flex;
+  gap: 6px;
+  margin: 8px 0;
+}
+.bim-selector .bim-btn {
+  padding: 4px 8px;
+  border: none;
+  background: #eee;
+  color: #333;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.bim-selector .bim-btn.active {
+  background: #3366cc;
+  color: #fff;
+}
+
+/* ------------ Cabeçalho de Aula ------------ */
+.lesson-header {
+  margin: 12px 0 6px;
+  font-size: 1rem;
+  color: #3366cc;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 4px;
+}
+
+/* opcional: espaçamento entre aulas */
+.subject-contents .content-item:first-of-type {
+  margin-top: 6px;
 }
