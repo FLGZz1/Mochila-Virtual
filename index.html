@@ -6,23 +6,37 @@
   <title>Mochila Virtual - Visualização</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-<body class="theme-light">
-  <!-- Cabeçalho: Título e botão único para alternar o tema -->
+<body class="theme-studentweek">
+  <div class="floating-emoji-1">📚</div>
+  <div class="floating-emoji-2">📝</div>
+  <div class="floating-emoji-3">✏️</div>
+  <div class="floating-emoji-4">🎓</div>
+  <div class="floating-emoji-5">🏫</div>
+  <div class="floating-emoji-6">🎒</div>
+  <div class="floating-emoji-7">📕</div>
+  <div class="floating-emoji-8">📗</div>
+  <div class="floating-emoji-9">📘</div>
+  <div class="floating-emoji-10">📙</div>
+  <div class="floating-emoji-11">✍️</div>
+  <div class="floating-emoji-12">📖</div>
+
+  <!-- Cabeçalho: Título e botões de controle -->
   <header id="menu">
     <div class="menu-container">
       <h1>Mochila Virtual</h1>
       <div class="header-controls">
-        <!-- Botão que mostra o emoji do tema atual: ☀️ (claro), 🌙 (escuro) ou 🌌 (space) -->
         <button id="theme-toggle-btn" title="Alternar Tema">☀️</button>
         <button id="config-btn" title="Configurações">⚙️</button>
+        <button id="commem-info-btn" style="display:none;" title="Tema comemorativo ativo! Clique para saber mais.">ℹ️</button>
       </div>
     </div>
   </header>
+  <div id="commem-alert" style="display:none;"></div>
 
   <!-- Seção de Conteúdos -->
   <section id="contents-section">
     <div class="container" id="public-content">
-      <!-- Conteúdos serão inseridos via script -->
+      <!-- O JavaScript irá injetar os cards de matérias aqui -->
     </div>
   </section>
 
@@ -36,20 +50,17 @@
     </div>
   </footer>
 
-  <!-- Overlay para o Modo Space: fundo estrelado junto com planetas e estrelas cadentes -->
+  <!-- Overlay para o Modo Space -->
   <div id="space-overlay">
-    <!-- O background do overlay já exibe muitas estrelas -->
-    <!-- Estrelas cadentes -->
-    <span class="shooting-star" style="left: 20%; top: 10%; animation-duration: 2s; animation-delay: 0s;"></span>
-    <span class="shooting-star" style="left: 65%; top: 15%; animation-duration: 2.5s; animation-delay: 1s;"></span>
-    <span class="shooting-star" style="left: 80%; top: 5%; animation-duration: 3s; animation-delay: 2s;"></span>
-    <span class="shooting-star" style="left: 50%; top: 60%; animation-duration: 2.2s; animation-delay: 1.5s;"></span>
-    <span class="shooting-star" style="left: 30%; top: 80%; animation-duration: 4s; animation-delay: 0s;"></span>
-    <!-- Planetas integrados no mesmo overlay -->
-    <span class="planet" style="left: 10%; top: 20%; opacity: 0.3; font-size: 3rem; animation: movePlanet 25s linear infinite;">🛰️</span>
-    <span class="planet" style="left: 70%; top: 30%; opacity: 0.5; font-size: 4rem; animation: movePlanet 30s linear infinite;">🌍</span>
-    <span class="planet" style="left: 40%; top: 70%; opacity: 0.8; font-size: 5rem; animation: movePlanet 20s linear infinite;">🪐</span>
-    <span class="planet" style="left: 30%; top: 30%; opacity: 0.4; font-size: 2.5rem; animation: movePlanet 35s linear infinite;">🌕</span>
+    <span class="shooting-star" style="left:20%;top:10%;animation-duration:2s;animation-delay:0s;"></span>
+    <span class="shooting-star" style="left:65%;top:15%;animation-duration:2.5s;animation-delay:1s;"></span>
+    <span class="shooting-star" style="left:80%;top:5%;animation-duration:3s;animation-delay:2s;"></span>
+    <span class="shooting-star" style="left:50%;top:60%;animation-duration:2.2s;animation-delay:1.5s;"></span>
+    <span class="shooting-star" style="left:30%;top:80%;animation-duration:4s;animation-delay:0s;"></span>
+    <span class="planet" style="left:10%;top:20%;opacity:0.3;font-size:3rem;animation:movePlanet 25s linear infinite;">🛰️</span>
+    <span class="planet" style="left:70%;top:30%;opacity:0.5;font-size:4rem;animation:movePlanet 30s linear infinite;">🌍</span>
+    <span class="planet" style="left:40%;top:70%;opacity:0.8;font-size:5rem;animation:movePlanet 20s linear infinite;">🪐</span>
+    <span class="planet" style="left:30%;top:30%;opacity:0.4;font-size:2.5rem;animation:movePlanet 35s linear infinite;">🌕</span>
   </div>
 
   <script src="script.js"></script>

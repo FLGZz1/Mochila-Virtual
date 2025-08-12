@@ -65,6 +65,177 @@ body.theme-math::before {
   100% { background-position: 500px 500px; }
 }
 
+/* Modo Semana do Estudante */
+body.theme-studentweek {
+  font-family: 'Roboto', sans-serif;
+  background-color: #1a237e;
+  color: #ffffff;
+  line-height: 1.6;
+  transition: background 0.3s ease, color 0.3s ease;
+  overflow-x: hidden;
+}
+
+body.theme-studentweek::before {
+  content: "📕";
+  position: fixed;
+  top: 10%;
+  left: 5%;
+  font-size: 2rem;
+  opacity: 0.15;
+  animation: studentweekFloat1 15s ease-in-out infinite;
+}
+
+body.theme-studentweek::after {
+  content: "📗";
+  position: fixed;
+  top: 30%;
+  right: 10%;
+  font-size: 2.5rem;
+  opacity: 0.12;
+  animation: studentweekFloat2 18s ease-in-out infinite;
+}
+
+/* Adiciona mais emojis com pseudo-elementos em elementos vazios */
+body.theme-studentweek .floating-emoji-1 {
+  content: "📚";
+  position: fixed;
+  bottom: 15%;
+  left: 15%;
+  font-size: 2.2rem;
+  opacity: 0.14;
+  animation: studentweekFloat3 20s ease-in-out infinite;
+}
+
+body.theme-studentweek .floating-emoji-2 {
+  content: "📝";
+  position: fixed;
+  top: 45%;
+  right: 25%;
+  font-size: 1.8rem;
+  opacity: 0.11;
+  animation: studentweekFloat1 17s ease-in-out infinite;
+}
+
+body.theme-studentweek .floating-emoji-3 {
+  content: "✏️";
+  position: fixed;
+  bottom: 30%;
+  right: 8%;
+  font-size: 2rem;
+  opacity: 0.13;
+  animation: studentweekFloat2 22s ease-in-out infinite;
+}
+
+body.theme-studentweek .floating-emoji-4 {
+  content: "🎓";
+  position: fixed;
+  top: 20%;
+  left: 30%;
+  font-size: 2.3rem;
+  opacity: 0.12;
+  animation: studentweekFloat3 19s ease-in-out infinite;
+}
+
+body.theme-studentweek .floating-emoji-5 {
+  content: "🏫";
+  position: fixed;
+  bottom: 20%;
+  left: 40%;
+  font-size: 2.4rem;
+  opacity: 0.10;
+  animation: studentweekFloat1 21s ease-in-out infinite;
+}
+
+body.theme-studentweek .floating-emoji-6 {
+  content: "🎒";
+  position: fixed;
+  top: 60%;
+  right: 15%;
+  font-size: 1.9rem;
+  opacity: 0.13;
+  animation: studentweekFloat2 16s ease-in-out infinite;
+}
+
+body.theme-studentweek .floating-emoji-7 {
+  content: "📕";
+  position: fixed;
+  top: 25%;
+  right: 40%;
+  font-size: 2.1rem;
+  opacity: 0.12;
+  animation: studentweekFloat3 23s ease-in-out infinite;
+}
+
+body.theme-studentweek .floating-emoji-8 {
+  content: "📗";
+  position: fixed;
+  bottom: 40%;
+  left: 20%;
+  font-size: 2rem;
+  opacity: 0.11;
+  animation: studentweekFloat1 19s ease-in-out infinite;
+}
+
+body.theme-studentweek .floating-emoji-9 {
+  content: "📘";
+  position: fixed;
+  top: 15%;
+  left: 45%;
+  font-size: 2.2rem;
+  opacity: 0.13;
+  animation: studentweekFloat2 24s ease-in-out infinite;
+}
+
+body.theme-studentweek .floating-emoji-10 {
+  content: "📙";
+  position: fixed;
+  bottom: 25%;
+  right: 35%;
+  font-size: 1.9rem;
+  opacity: 0.12;
+  animation: studentweekFloat3 18s ease-in-out infinite;
+}
+
+body.theme-studentweek .floating-emoji-11 {
+  content: "✍️";
+  position: fixed;
+  top: 35%;
+  left: 10%;
+  font-size: 2.3rem;
+  opacity: 0.11;
+  animation: studentweekFloat1 22s ease-in-out infinite;
+}
+
+body.theme-studentweek .floating-emoji-12 {
+  content: "📖";
+  position: fixed;
+  bottom: 10%;
+  right: 20%;
+  font-size: 2.1rem;
+  opacity: 0.13;
+  animation: studentweekFloat2 20s ease-in-out infinite;
+}
+
+@keyframes studentweekFloat1 {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  33% { transform: translate(-15px, -15px) rotate(120deg); }
+  66% { transform: translate(15px, 15px) rotate(240deg); }
+  100% { transform: translate(0, 0) rotate(360deg); }
+}
+
+@keyframes studentweekFloat2 {
+  0% { transform: translate(0, 0) rotate(360deg); }
+  33% { transform: translate(15px, -15px) rotate(240deg); }
+  66% { transform: translate(-15px, 15px) rotate(120deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+@keyframes studentweekFloat3 {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-20px, -10px) scale(1.1); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
 /* ===========================
    SPACE OVERLAY
    =========================== */
@@ -130,6 +301,13 @@ body.theme-math #menu {
   background-color: rgba(0,0,0,0.7);
   border-color: #ffffff;
 }
+body.theme-studentweek #menu {
+  background: linear-gradient(45deg, #1a237e, #3949ab, #1a237e);
+  background-size: 200% 200%;
+  animation: gradientAnimation 15s ease infinite;
+  border-color: #7986cb;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
 @keyframes gradientAnimation {
   0%   { background-position: 0% 50%; }
   50%  { background-position: 100% 50%; }
@@ -182,6 +360,119 @@ body.theme-math #menu {
 }
 
 /* ===========================
+   SELETOR DE BIMESTRE
+   =========================== */
+.bim-selector {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin: 16px 0;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
+}
+
+.bim-selector .bim-btn {
+  padding: 10px 20px;
+  border: 2px solid transparent;
+  background: transparent;
+  color: inherit;
+  font-weight: 500;
+  font-size: 0.95rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.bim-selector .bim-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+}
+
+.bim-selector .bim-btn:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* Estilos específicos para cada tema */
+body.theme-light .bim-selector .bim-btn {
+  color: #333;
+}
+
+body.theme-light .bim-selector .bim-btn.active {
+  background: #3366cc;
+  color: white;
+  box-shadow: 0 2px 8px rgba(51, 102, 204, 0.3);
+}
+
+body.theme-dark .bim-selector .bim-btn.active {
+  background: #ffffff;
+  color: #000000;
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.3);
+}
+
+body.theme-space .bim-selector .bim-btn.active {
+  background: #8A2BE2;
+  color: white;
+  box-shadow: 0 0 15px rgba(138, 43, 226, 0.4);
+}
+
+body.theme-math .bim-selector .bim-btn.active {
+  background: #ffffff;
+  color: #000000;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+}
+
+body.theme-studentweek .bim-selector {
+  background: rgba(57, 73, 171, 0.3);
+}
+
+body.theme-studentweek .bim-selector .bim-btn {
+  letter-spacing: 0.5px;
+  color: #ffffff;
+}
+
+body.theme-studentweek .bim-selector .bim-btn.active {
+  background: #7986cb;
+  color: white;
+  box-shadow: 0 0 15px rgba(121, 134, 203, 0.4);
+  transform: translateY(-2px);
+}
+
+body.theme-studentweek .bim-selector .bim-btn:not(.active) {
+  background: transparent;
+  box-shadow: none;
+}
+
+body.theme-studentweek .bim-selector .bim-btn:hover:not(.active) {
+  opacity: 0.9;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Animação suave ao trocar de bimestre */
+.bim-selector .bim-btn.active {
+  transform: translateY(-2px);
+  animation: selectBimestre 0.3s ease;
+}
+
+@keyframes selectBimestre {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+  100% { transform: translateY(-2px); }
+}
+
+/* ===========================
    CONTAINER PRINCIPAL
    =========================== */
 .container {
@@ -216,6 +507,12 @@ body.theme-math .card {
   background: transparent; border-color: #ffffff;
   box-shadow: 0 0 10px #ffffff;
 }
+body.theme-studentweek .card {
+  background: rgba(26, 35, 126, 0.6);
+  border: 2px solid #7986cb;
+  box-shadow: 0 0 15px rgba(121, 134, 203, 0.3);
+  backdrop-filter: blur(5px);
+}
 
 /* ===========================
    ITENS DE CONTEÚDO
@@ -243,10 +540,26 @@ body.theme-space .show-full-btn {
 body.theme-math .show-full-btn {
   background: #ffffff; color: #000000;
 }
+body.theme-studentweek .show-full-btn {
+  background: #7986cb;
+  color: #fff;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+body.theme-studentweek .show-full-btn:hover {
+  background: #3949ab;
+  transform: scale(1.05);
+}
 .content-full {
   display: none;
   margin-top: 10px;
   word-break: break-word;
+}
+p, li
+ {
+    white-space: pre-wrap;
 }
 
 /* ===========================
@@ -272,6 +585,12 @@ body.theme-space #footer {
 }
 body.theme-math #footer {
   background-color: rgba(0,0,0,0.7); border-color: #ffffff;
+}
+body.theme-studentweek #footer {
+  background: linear-gradient(45deg, #1a237e, #3949ab, #1a237e);
+  background-size: 200% 200%;
+  animation: gradientAnimation 15s ease infinite;
+  border-color: #7986cb;
 }
 @keyframes fadeInUp {
   0%   { opacity: 0; transform: translateY(20px); }
@@ -349,4 +668,51 @@ video.responsive-video {
 /* opcional: espaçamento entre aulas */
 .subject-contents .content-item:first-of-type {
   margin-top: 6px;
+}
+#commem-info-btn {
+  background: transparent;
+  border: none;
+  font-size: 1.15rem;
+  cursor: pointer;
+  margin-left: 6px;
+  color: #1565c0;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+#commem-info-btn:hover {
+  opacity: 1;
+}
+
+#commem-alert {
+  display: none;
+  position: absolute;
+  top: 48px;
+  right: 24px;
+  background: #e3f2fd;
+  color: #1565c0;
+  border: 1px solid #90caf9;
+  border-radius: 6px;
+  padding: 10px 18px;
+  font-size: 0.98rem;
+  box-shadow: 0 2px 8px rgba(21,101,192,0.08);
+  z-index: 2000;
+  min-width: 220px;
+  max-width: 320px;
+  text-align: left;
+}
+
+/* Esconde emojis quando não estiver no tema estudante */
+body:not(.theme-studentweek) .floating-emoji-1,
+body:not(.theme-studentweek) .floating-emoji-2,
+body:not(.theme-studentweek) .floating-emoji-3,
+body:not(.theme-studentweek) .floating-emoji-4,
+body:not(.theme-studentweek) .floating-emoji-5,
+body:not(.theme-studentweek) .floating-emoji-6,
+body:not(.theme-studentweek) .floating-emoji-7,
+body:not(.theme-studentweek) .floating-emoji-8,
+body:not(.theme-studentweek) .floating-emoji-9,
+body:not(.theme-studentweek) .floating-emoji-10,
+body:not(.theme-studentweek) .floating-emoji-11,
+body:not(.theme-studentweek) .floating-emoji-12 {
+  display: none;
 }

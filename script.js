@@ -29,10 +29,11 @@ function updateThemeButton(themeName) {
     themeName = localStorage.getItem("selectedTheme") || "theme-light";
   }
   switch (themeName) {
-    case "theme-light": btn.textContent = "☀️"; break;
-    case "theme-dark":  btn.textContent = "🌙"; break;
-    case "theme-space": btn.textContent = "🌌"; break;
-    case "theme-math":  btn.textContent = "➕"; break;
+    case "theme-light":       btn.textContent = "☀️"; break;
+    case "theme-dark":        btn.textContent = "🌙"; break;
+    case "theme-space":       btn.textContent = "🌌"; break;
+    case "theme-math":        btn.textContent = "➕"; break;
+    case "theme-studentweek": btn.textContent = "🎒"; break; 
   }
 }
 
@@ -40,21 +41,50 @@ function setThemeBasedOnDate() {
   const { persistTheme, autoCommemTheme } = loadThemeSettings();
   const now   = new Date();
   const month = now.getMonth() + 1;
+  const day   = now.getDate();
   let themeToApply;
+  let isCommemorative = false;
 
-  // Tema comemorativo: todo junho
-  if (autoCommemTheme && month === 6) {
+  // Tema comemorativo: Semana do Estudante de 11 a 16 de agosto
+  if (autoCommemTheme && month === 8 && day >= 11 && day <= 16) {
+    themeToApply = "theme-studentweek";
+    isCommemorative = true;
+  }
+  // Tema comemorativo: todo junho (matemática)
+  else if (autoCommemTheme && month === 6) {
     themeToApply = "theme-math";
-    localStorage.setItem("selectedTheme", themeToApply);
+    isCommemorative = true;
   } else {
-    themeToApply = persistTheme
-      ? (localStorage.getItem("selectedTheme") || "theme-light")
-      : "theme-light";
+    themeToApply = localStorage.getItem("selectedTheme") || "theme-light";
   }
 
-  document.body.classList.remove("theme-light","theme-dark","theme-space","theme-math");
+  document.body.classList.remove("theme-light","theme-dark","theme-space","theme-math","theme-studentweek");
   document.body.classList.add(themeToApply);
   updateThemeButton(themeToApply);
+
+  // Desabilita ou habilita o botão de tema e mostra aviso
+  const btn = document.getElementById("theme-toggle-btn");
+  if (btn) {
+    btn.disabled = isCommemorative;
+    btn.title = isCommemorative
+      ? "Tema comemorativo ativo! Não é possível trocar o tema neste período."
+      : "Alternar Tema";
+  }
+
+  // Exibe aviso visual no site se for comemorativo
+  const alert = document.getElementById("commem-alert");
+  const infoBtn = document.getElementById("commem-info-btn");
+  if (alert && infoBtn) {
+    if (isCommemorative) {
+      infoBtn.style.display = "inline-block";
+      alert.style.display = "none"; // Só mostra ao clicar
+      alert.textContent = "Tema comemorativo ativo, desative nas configurações caso queira mudar o tema";
+    } else {
+      infoBtn.style.display = "none";
+      alert.style.display = "none";
+      alert.textContent = "";
+    }
+  }
 }
 
 function openConfigModal() {
@@ -141,10 +171,25 @@ function renderSubjectCard(subject) {
   function populate() {
     const selBim = subjectBims[subject.id] || 1;
 
+    // Se clicar no mesmo bimestre que já está ativo
+    if (contentsContainer.dataset.currentBim === String(selBim)) {
+        // Remove a classe active do botão
+        Array.from(bimSelector.children).forEach(btn => {
+            btn.classList.remove("active");
+        });
+        // Limpa o conteúdo e o bimestre atual
+        contentsContainer.innerHTML = "";
+        contentsContainer.dataset.currentBim = "";
+        return;
+    }
+
     // Atualiza estado ativo dos botões de bimestre
     Array.from(bimSelector.children).forEach(btn => {
-      btn.classList.toggle("active", Number(btn.dataset.bim) === selBim);
+        btn.classList.toggle("active", Number(btn.dataset.bim) === selBim);
     });
+
+    // Salva o bimestre atual
+    contentsContainer.dataset.currentBim = selBim;
 
     // Filtra por bimestre
     const lista = (subject.contents || [])
@@ -215,10 +260,6 @@ function renderSubjectCard(subject) {
     }
   });
 
-  // Inicializa com bimestre 1 (ou valor salvo)
-  subjectBims[subject.id] = subjectBims[subject.id] || 1;
-  populate();
-
   return card;
 }
 
@@ -250,13 +291,19 @@ document.addEventListener("DOMContentLoaded", () => {
     const { persistTheme, autoCommemTheme } = loadThemeSettings();
     const now   = new Date();
     const month = now.getMonth() + 1;
+    const day   = now.getDate();
 
-    if (autoCommemTheme && month === 6) {
-      alert("Tema comemorativo ativo. Desative em Configurações para mudar.");
+    // Verifica se está em período comemorativo
+    const isStudentWeek = autoCommemTheme && month === 8 && day >= 11 && day <= 16;
+    const isMathMonth   = autoCommemTheme && month === 6;
+
+    // Se estiver em período comemorativo e o tema automático estiver ativo, não faz nada
+    if ((isStudentWeek || isMathMonth) && autoCommemTheme) {
       return;
     }
 
-    const themes = ["theme-light","theme-dark","theme-space","theme-math"];
+    // Troca de tema normal
+    const themes = ["theme-light","theme-dark","theme-space","theme-math","theme-studentweek"];
     let cur = localStorage.getItem("selectedTheme") || themes[0];
     let idx = (themes.indexOf(cur) + 1) % themes.length;
     const next = themes[idx];
@@ -288,4 +335,24 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("public-content")
         .innerHTML = "<p>Erro ao carregar conteúdos.</p>";
     });
+
+  const btn = document.getElementById("theme-toggle-btn");
+  if (btn) {
+    btn.disabled = false;
+    btn.title = "Alternar Tema";
+  }
+
+  // Mostra/oculta o alerta ao clicar no botão ℹ️
+  const infoBtn = document.getElementById("commem-info-btn");
+  const alert = document.getElementById("commem-alert");
+  if (infoBtn && alert) {
+    infoBtn.addEventListener("click", () => {
+      if (alert.style.display === "block") {
+        alert.style.display = "none";
+      } else {
+        alert.style.display = "block";
+        setTimeout(() => { alert.style.display = "none"; }, 5000);
+      }
+    });
+  }
 });
